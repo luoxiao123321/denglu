@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+
+<body>
+	
+	<input type="text" id="user"/><br>
+	<input type="text" id="pass"/><br>
+		<button id="zc">注册</button>
+		<button id="dl">登陆</button>
+	
+	<script type="text/javascript" src="jquery.min.js">
+		
+	</script>
+	
+	
+	<script type="text/javascript">
+		$('#zc').click(function(){
+//			$.ajax({
+//				url:'http://localhost:9000/user/zen',
+//				type:'post',
+//				data:{
+//					user:$('#user').val(),
+//					pass:$('#pass').val()
+//				},
+//				success:function(data){
+//					console.log(data)
+//				}
+//			})
+			
+			$.ajax({
+				url:'http://localhost:9000/user/sou',
+				type:'post',
+				data:{
+					user:$('#user').val()
+				},
+				success:function(data){
+					console.log(data)
+					if(data == '没有搜索到您要的东西'){
+						alert('注册成功')
+						$.ajax({
+				url:'http://localhost:9000/user/zen',
+				type:'post',
+				data:{
+					user:$('#user').val(),
+					pass:$('#pass').val()
+				},
+				success:function(data){
+					console.log(data)
+				}
+			})
+					}else{
+						alert('账号已有')
+					}
+				}
+			})
+		})
+		
+		$('#dl').click(function(){
+			$.ajax({
+				url:'http://localhost:9000/user/cha',
+				type:'post',
+				data:{
+					user:$('#user').val(),
+					pass:$('#pass').val()
+				},
+				success:function(data){
+					console.log(data)
+					if(data == '没有搜索到您要的东西'){
+						alert('登陆失败')
+					}else{
+						alert('登陆成功')
+					}
+				}
+			})
+		})
+	</script>
+</body>
+</html>
